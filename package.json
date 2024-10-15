@@ -1,20 +1,27 @@
 {
-  "name": "teste-tecnico-sea15-10",
+  "name": "@derikcarvalho/cel-cpf-cnpj-cep-sea-test-lib",
   "version": "1.0.0",
-  "description": "teste técnico sea. 15/10/2024. commits válidos até às 18h do dia 15/10/2024.",
+  "description": "Biblioteca para mascaramento e validação de números de celular, CPF, CNPJ e CEP",
+  "main": "./dist/index.js",
   "type": "commonjs",
-  "main": "./src/index.ts",
   "scripts": {
-    "start": "npm run start",
-    "dev": "node run --watch "
+    "build": "tsc",
+    "start": "ts-node ./src/index.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "mascara",
+    "validação",
+    "typescript",
+    "cpf",
+    "celular"
+  ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "teste-tecnico-sea15-10": "file:"
-  },
   "devDependencies": {
+    "ts-node": "^10.0.0",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@derikcarvalho/cel-cpf-cnpj-cep-sea-test-lib": "file:"
   }
 }
