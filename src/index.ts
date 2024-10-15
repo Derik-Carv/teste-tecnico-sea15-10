@@ -71,11 +71,20 @@ class ValidatorSea {
     
         return clean[12] === String(firstDigit) && clean[13] === String(secondDigit);
     }
+    public static mascaraCEP(cep: string): string {
+        return cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+    }
+    
+    public static validoCEP(cep: string): boolean {
+        const regex = /^\d{5}-?\d{3}$/;
+        return regex.test(cep);
+    }    
 }
     const numberCel = "21912345678";
     const cpf = "123.456.789-09";
     const cnpj = "12.345.678/0001-95";
-    console.log("Celular: ", ValidatorSea.validoCel(numberCel));
+    const cep = "01001-000";
+    console.log("CEP:", ValidatorSea.mascaraCEP(cep), "Válido?", ValidatorSea.validoCEP(cep));
     console.log("Celular:", ValidatorSea.mascaraCel(numberCel), "Válido?", ValidatorSea.validoCel(numberCel));
     console.log("CPF:", ValidatorSea.mascaraCPF(cpf), "Válido?", ValidatorSea.validoCPF(cpf));
     console.log("CNPJ:", ValidatorSea.mascaraCNPJ(cnpj), "Válido?", ValidatorSea.validoCNPJ(cnpj));
