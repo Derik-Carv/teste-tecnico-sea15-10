@@ -1,4 +1,4 @@
-class Validator {
+class ValidatorSea {
     private static readonly ddd: { [key: string]: string } = {
         '11': 'São Paulo', '12': 'São Paulo', '13': 'São Paulo', '14': 'São Paulo',
         '15': 'São Paulo', '16': 'São Paulo', '17': 'São Paulo', '18': 'São Paulo',
@@ -32,8 +32,24 @@ class Validator {
         const regex = /^\(?([1-9]{2})\)? ?9[1-9]\d{3}-?\d{4}$/;
         return regex.test(numberCel) && this.ddd[numberCel.slice(0, 2)] !== undefined;
     }
+    public static mascaraCPF(cpf: string): string {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d)/, '$1.$2.$3-$4');
+    }
+    
+    public static validoCPF(cpf: string): boolean {
+        const cleaned = cpf.replace(/\D/g, '');
+        if (cleaned.length !== 11) return false;
+        const sum1 = cleaned.split('').slice(0, 9).reduce((acc, digit, index) => acc + parseInt(digit) * (10 - index), 0);
+        const firstDigit = (sum1 * 10) % 11 === 10 ? 0 : (sum1 * 10) % 11;
+        const sum2 = cleaned.split('').slice(0, 10).reduce((acc, digit, index) => acc + parseInt(digit) * (11 - index), 0);
+        const secondDigit = (sum2 * 10) % 11 === 10 ? 0 : (sum2 * 10) % 11;
+        return cleaned[9] === String(firstDigit) && cleaned[10] === String(secondDigit);
+    }
     
 }
-    let numberCel = "21912345678";
-    console.log("Celular: ", Validator.validoCel(numberCel));
+    const numberCel = "21912345678";
+    const cpf = "123.456.789-09";
+    console.log("Celular: ", ValidatorSea.validoCel(numberCel));
+    console.log("Celular:", ValidatorSea.mascaraCel(numberCel), "Válido?", ValidatorSea.validoCel(numberCel));
+    console.log("CPF:", ValidatorSea.mascaraCPF(cpf), "Válido?", ValidatorSea.validoCPF(cpf));
     
