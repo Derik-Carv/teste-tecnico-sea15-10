@@ -1,12 +1,14 @@
 {
-  "name": "@derikcarvalho/cel-cpf-cnpj-cep-sea-test-lib",
-  "version": "1.0.0",
+  "name": "@derikcarvalho/testetecsea-npm",
+  "version": "1.0.1",
   "description": "Biblioteca para mascaramento e validação de números de celular, CPF, CNPJ e CEP",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node ./src/index.ts"
+    "start": "ts-node ./src/index.ts",
+    "dev": "nodemon --watch \"src//\" --exec \"ts-node src/sample.ts\" -e ts"
   },
   "keywords": [
     "mascara",
@@ -22,6 +24,9 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@derikcarvalho/cel-cpf-cnpj-cep-sea-test-lib": "file:"
+    "@derikcarvalho/cel-cpf-cnpj-cep-sea-test-lib": "file:",
+    "@derikcarvalho/testetecsea": "file:",
+    "@derikcarvalho/testetecsea-npm": "file:",
+    "nodemon": "^3.1.7"
   }
 }
