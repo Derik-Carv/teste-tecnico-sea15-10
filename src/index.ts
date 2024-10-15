@@ -4,8 +4,8 @@ class Validator {
         '15': 'São Paulo', '16': 'São Paulo', '17': 'São Paulo', '18': 'São Paulo',
         '19': 'São Paulo', '21': 'Rio de Janeiro', '22': 'Rio de Janeiro', '24': 'Rio de Janeiro',
         '27': 'Espírito Santo', '28': 'Espírito Santo',
-        '31': 'Minas Gerais', '32': 'Minas Gerais','33': 'Minas Gerais', '34': 'Minas Gerais',
-        '35': 'Minas Gerais', '37': 'Minas Gerais','38': 'Minas Gerais',
+        '31': 'Minas Gerais', '32': 'Minas Gerais', '33': 'Minas Gerais', '34': 'Minas Gerais',
+        '35': 'Minas Gerais', '37': 'Minas Gerais', '38': 'Minas Gerais',
         '41': 'Paraná', '42': 'Paraná', '43': 'Paraná', '44': 'Paraná', '45': 'Paraná', '46': 'Paraná',
         '47': 'Santa Catarina', '48': 'Santa Catarina', '49': 'Santa Catarina',
         '51': 'Rio Grande do Sul', '53': 'Rio Grande do Sul',
@@ -23,4 +23,17 @@ class Validator {
         const result = sum % 11;
         return result < 2 ? 0 : 11 - result;
     }
+
+    public static mascaraCel(numberCel: string): string {
+        return numberCel.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+    
+    public static validoCel(numberCel: string): boolean {
+        const regex = /^\(?([1-9]{2})\)? ?9[1-9]\d{3}-?\d{4}$/;
+        return regex.test(numberCel) && this.ddd[numberCel.slice(0, 2)] !== undefined;
+    }
+    
 }
+    let numberCel = "21912345678";
+    console.log("Celular: ", Validator.validoCel(numberCel));
+    
