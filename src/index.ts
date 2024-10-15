@@ -19,11 +19,6 @@ class ValidatorSea {
         '96': 'Amapá', '97': 'Amazonas', '98': 'Maranhão', '99': 'Maranhão'
     };
 
-    private static digitoValido = (sum: number): number => {
-        const result = sum % 11;
-        return result < 2 ? 0 : 11 - result;
-    }
-
     public static mascaraCel(numberCel: string): string {
         return numberCel.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     }
@@ -47,6 +42,11 @@ class ValidatorSea {
     }
     public static mascaraCNPJ(cnpj: string): string {
         return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d)/, '$1.$2.$3/$4-$5');
+    }
+
+    private static digitoValido = (sum: number): number => {
+        const result = sum % 11;
+        return result < 2 ? 0 : 11 - result;
     }
     
     public static validoCNPJ(cnpj: string): boolean {
@@ -80,11 +80,27 @@ class ValidatorSea {
         return regex.test(cep);
     }    
 }
-    const numberCel = "21912345678";
-    const cpf = "123.456.789-09";
-    const cnpj = "12.345.678/0001-95";
-    const cep = "01001-000";
-    console.log("CEP:", ValidatorSea.mascaraCEP(cep), "Válido?", ValidatorSea.validoCEP(cep));
-    console.log("Celular:", ValidatorSea.mascaraCel(numberCel), "Válido?", ValidatorSea.validoCel(numberCel));
-    console.log("CPF:", ValidatorSea.mascaraCPF(cpf), "Válido?", ValidatorSea.validoCPF(cpf));
-    console.log("CNPJ:", ValidatorSea.mascaraCNPJ(cnpj), "Válido?", ValidatorSea.validoCNPJ(cnpj));
+    // Exemplo de uso completo:
+const numberCel = "21912345678";
+const cpf = "123.456.789-09";
+const cnpj = "12.345.678/0001-95";
+const cep = "01001-000";
+
+console.table({
+    Celular: { 
+        Formatado: ValidatorSea.mascaraCel(numberCel), 
+        Valido: ValidatorSea.validoCel(numberCel) 
+    },
+    CPF: { 
+        Formatado: ValidatorSea.mascaraCPF(cpf), 
+        Valido: ValidatorSea.validoCPF(cpf) 
+    },
+    CNPJ: { 
+        Formatado: ValidatorSea.mascaraCNPJ(cnpj), 
+        Valido: ValidatorSea.validoCNPJ(cnpj)
+    },
+    CEP: { 
+        Formatado: ValidatorSea.mascaraCEP(cep), 
+        Valido: ValidatorSea.validoCEP(cep)
+    }
+});
